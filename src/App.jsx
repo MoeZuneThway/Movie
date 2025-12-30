@@ -1,8 +1,9 @@
+import React from 'react'
 import {useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Search from './components/search'
+import Search from './components/Search'
 import Loading from './components/Loading'
 import Moviecard from './components/Moviecard'
 import { useDebounce } from 'react-use'
@@ -51,10 +52,10 @@ fetchMovies(debounceSearch);
 },[debounceSearch])
   return(
     <main>
-        <div className='pattern'>
+        <div className='pattern '>
           <div className="wrapper">
-            <header>
-              <img src="./hero.png" alt="" />
+            <header className='overflow-hidden'>
+              <img src="./hero.png" alt="" className='w-full'/>
             <h1>Find <span className='text-gradient'>Movies</span> You Will Enjoy Without Hassle!</h1>
             <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
 
