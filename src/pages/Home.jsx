@@ -91,7 +91,7 @@ const Home = () => {
 
   return (
     <main>
-      <div className="pattern">
+      <div className="pattern mt-3">
         <div className="wrapper">
           <header className="overflow-hidden">
             <img src="./hero.png" alt="" className="w-full" />
