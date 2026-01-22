@@ -57,7 +57,7 @@ const Home = () => {
   // Fetch trending movies
   const fetchTrending = async () => {
     try {
-      const response = await fetch('http://localhost:5001/movies/trending');
+      const response = await fetch('https://movieflix-backend-kkub.onrender.com/movies/trending');
       const data = await response.json();
       setTrendingMovies(data.results || []);
     } catch (err) {
@@ -68,7 +68,7 @@ const Home = () => {
   // Update trending movie
   const updateTrendingMovie = async (movie) => {
     try {
-      await fetch('http://localhost:5001/movies/trending', {
+      await fetch('https://movieflix-backend-kkub.onrender.com/movies/trending', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(movie),
