@@ -1,26 +1,40 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
-const Moviecard = ({movie:
-    {title,popularity, poster_path, release_date,vote_average,original_language}
-}) => {
+const Moviecard = ({ movie, onClick }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className='movie-card'>
-        <img src={poster_path?`https://image.tmdb.org/t/p/w500/${poster_path}:` :'/no-movie.png'} alt="" />
-        <div className="mt-4">
-            <h3>{title}</h3>
-            <div className="content">
-                <div className="rating">
-                    <img src="star.svg" alt="" />
-                    <p>{vote_average? vote_average.toFixed(1): "N/A"}</p>
-                </div>
-                <span className='font-bold'>.</span>
-                <p className='lang'>{original_language}</p>
-                <span className='font-bold'>.</span>
-                <p className='year'>{release_date? release_date.split('-')[0] :"N/A"}</p>
-            </div>
-        </div>
-    </div>
-  )
-}
+    <li
+      className="movie-card"
+      onClick={() => {
+        if (onClick) onClick();
+        navigate(`/movie/${movie.id}`);
+      }}
+    >
+      <img
+        src={
+          movie.poster_path
+            ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+            : ''
+        }
+        alt={movie.title}
+      />
 
-export default Moviecard
+      <div className="mt-4">
+        <h3>{movie.title}</h3>
+
+        <div className="content">
+          <div className="rating">
+            <img src="star.svg" alt="Star Icon" />
+            <p>{movie.vote_average?.toFixed(1)}</p>
+          </div>
+
+          <span>•</span>
+          <p className="year">{movie.release_date?.split('-')[0]}</p>
+        </div>
+      </div>
+    </li>
+  );
+};
+
+export default Moviecard;

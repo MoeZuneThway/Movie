@@ -49,6 +49,9 @@
 }
 
 @layer components {
+  /* Elegant Swiper arrows */
+
+
   .pattern {
     @apply bg-hero-pattern w-full h-screen bg-center bg-cover absolute z-0 overflow-x-hidden;
   }
