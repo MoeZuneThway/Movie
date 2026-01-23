@@ -27,7 +27,7 @@ const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  
+  const [trendLoading, setTrendLoading] = useState(false);
   useDebounce(
     () => setDebounceSearch(searchTerm),
     500,
@@ -56,12 +56,15 @@ const Home = () => {
 
   // Fetch trending movies
   const fetchTrending = async () => {
+    setTrendLoading(true);
     try {
       const response = await fetch('https://movieflix-backend-kkub.onrender.com/movies/trending');
       const data = await response.json();
       setTrendingMovies(data.results || []);
     } catch (err) {
       console.error(err);
+    }finally {
+      setTrendLoading(false);
     }
   };
 
@@ -103,8 +106,7 @@ const Home = () => {
 
        <div className="trending">
   <h1>Trending Movies</h1>
-
-  <Swiper
+    {trendLoading? (<Loading/>) :error? (<p className="text-red-500">{error}</p>):( <Swiper
   modules={[Autoplay]}
   autoplay={{
     delay: 2500,
@@ -137,7 +139,8 @@ const Home = () => {
       />
     </SwiperSlide>
   ))}
-</Swiper>
+</Swiper>)}
+ 
 
 </div>
 
